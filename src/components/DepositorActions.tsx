@@ -49,10 +49,10 @@ export default function DepositorActions({ vaultAddress }: Props) {
       {/* My position */}
       <div className="card">
         <div className="status-grid">
-          <div className="stat"><label>My Shares (sfFROG)</label>    <value>{fmt(shares)}</value></div>
-          <div className="stat"><label>Value per Share</label>        <value>{fmt(pricePerShare)} FROG</value></div>
-          <div className="stat"><label>Funding Window Open</label>    <value>{isFunding ? '✅ Yes' : '❌ No'}</value></div>
-          <div className="stat"><label>Total Assets in Vault</label>  <value>{fmt(totalAssets)}</value></div>
+          <div className="stat"><label>My Shares (sfFROG)</label>    <span>{fmt(shares)}</span></div>
+          <div className="stat"><label>Value per Share</label>        <span>{fmt(pricePerShare)} FROG</span></div>
+          <div className="stat"><label>Funding Window Open</label>    <span>{isFunding ? '✅ Yes' : '❌ No'}</span></div>
+          <div className="stat"><label>Total Assets in Vault</label>  <span>{fmt(totalAssets)}</span></div>
         </div>
       </div>
 

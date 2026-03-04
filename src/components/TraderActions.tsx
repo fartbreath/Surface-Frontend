@@ -45,10 +45,10 @@ export default function TraderActions({ vaultAddress }: Props) {
       {/* Status banner */}
       <div className="card">
         <div className="status-grid">
-          <div className="stat"><label>Total Assets in Vault</label><value>{totalFmt}</value></div>
-          <div className="stat"><label>Custodied Amount</label>     <value>{custodiedFmt}</value></div>
-          <div className="stat"><label>In Epoch</label>             <value>{isInEpoch ? '✅ Yes' : '❌ No'}</value></div>
-          <div className="stat"><label>Funds Custodied</label>      <value>{custodied ? '✅ Yes' : '❌ No'}</value></div>
+          <div className="stat"><label>Total Assets in Vault</label><span>{totalFmt}</span></div>
+          <div className="stat"><label>Custodied Amount</label>     <span>{custodiedFmt}</span></div>
+          <div className="stat"><label>In Epoch</label>             <span>{isInEpoch ? '✅ Yes' : '❌ No'}</span></div>
+          <div className="stat"><label>Funds Custodied</label>      <span>{custodied ? '✅ Yes' : '❌ No'}</span></div>
         </div>
       </div>
 
