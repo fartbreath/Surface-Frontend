@@ -129,29 +129,29 @@ export default function VaultStatus({ vaultAddress }: Props) {
       <div className="card">
         <h3>Addresses</h3>
         <div className="status-grid">
-          <div className="stat"><label>Owner</label>        <value title={String(owner)}>{addrShort(String(owner))}</value></div>
-          <div className="stat"><label>Trader</label>       <value title={String(trader)}>{addrShort(String(trader))}</value></div>
-          <div className="stat"><label>Asset (ERC-20)</label><value title={String(asset)}>{addrShort(String(asset))}</value></div>
+          <div className="stat"><label>Owner</label>        <span title={String(owner)}>{addrShort(String(owner))}</span></div>
+          <div className="stat"><label>Trader</label>       <span title={String(trader)}>{addrShort(String(trader))}</span></div>
+          <div className="stat"><label>Asset (ERC-20)</label><span title={String(asset)}>{addrShort(String(asset))}</span></div>
         </div>
       </div>
 
       <div className="card">
         <h3>Balances</h3>
         <div className="status-grid">
-          <div className="stat"><label>Total Assets</label>      <value>{fmt(totalAssets as bigint)}</value></div>
-          <div className="stat"><label>Total Deposits</label>    <value>{fmt(totalDeposits as bigint)}</value></div>
-          <div className="stat"><label>Max Deposits</label>      <value>{fmt(maxDeposits as bigint)}</value></div>
-          <div className="stat"><label>Total Shares</label>      <value>{fmt(totalSupply as bigint)}</value></div>
-          <div className="stat"><label>Custodied Amount</label>  <value>{fmt(custodiedAmount as bigint)}</value></div>
+          <div className="stat"><label>Total Assets</label>      <span>{fmt(totalAssets as bigint)}</span></div>
+          <div className="stat"><label>Total Deposits</label>    <span>{fmt(totalDeposits as bigint)}</span></div>
+          <div className="stat"><label>Max Deposits</label>      <span>{fmt(maxDeposits as bigint)}</span></div>
+          <div className="stat"><label>Total Shares</label>      <span>{fmt(totalSupply as bigint)}</span></div>
+          <div className="stat"><label>Custodied Amount</label>  <span>{fmt(custodiedAmount as bigint)}</span></div>
         </div>
       </div>
 
       <div className="card">
         <h3>Epoch #{String(currentEpoch ?? '—')}</h3>
         <div className="status-grid">
-          <div className="stat"><label>Funding Start</label> <value>{epoch ? tsToLocal(Number(epoch.fundingStart)) : '—'}</value></div>
-          <div className="stat"><label>Epoch Start</label>   <value>{epoch ? tsToLocal(Number(epoch.epochStart))  : '—'}</value></div>
-          <div className="stat"><label>Epoch End</label>     <value>{epoch ? tsToLocal(Number(epoch.epochEnd))    : '—'}</value></div>
+          <div className="stat"><label>Funding Start</label> <span>{epoch ? tsToLocal(Number(epoch.fundingStart)) : '—'}</span></div>
+          <div className="stat"><label>Epoch Start</label>   <span>{epoch ? tsToLocal(Number(epoch.epochStart))  : '—'}</span></div>
+          <div className="stat"><label>Epoch End</label>     <span>{epoch ? tsToLocal(Number(epoch.epochEnd))    : '—'}</span></div>
         </div>
       </div>
     </div>
