@@ -126,7 +126,7 @@ export default function DepositorActions({ vaultAddress }: Props) {
             {busy ? 'Sending…' : 'Withdraw'}
           </button>
         </div>
-        {custodied && <p className="tx-status">Cannot withdraw while funds are custodied.</p>}
+        {!!custodied && <p className="tx-status">Cannot withdraw while funds are custodied.</p>}
         <TxBadge hash={hash} error={error} confirming={confirming} />
       </div>
 
