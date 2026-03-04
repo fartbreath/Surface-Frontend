@@ -1,0 +1,37 @@
+export const vaultAbi = [
+  // ---- View / State ----
+  { name: 'asset',                       type: 'function', stateMutability: 'view',       inputs: [],                                                                outputs: [{ type: 'address' }] },
+  { name: 'trader',                      type: 'function', stateMutability: 'view',       inputs: [],                                                                outputs: [{ type: 'address' }] },
+  { name: 'owner',                       type: 'function', stateMutability: 'view',       inputs: [],                                                                outputs: [{ type: 'address' }] },
+  { name: 'started',                     type: 'function', stateMutability: 'view',       inputs: [],                                                                outputs: [{ type: 'bool' }] },
+  { name: 'custodied',                   type: 'function', stateMutability: 'view',       inputs: [],                                                                outputs: [{ type: 'bool' }] },
+  { name: 'custodiedAmount',             type: 'function', stateMutability: 'view',       inputs: [],                                                                outputs: [{ type: 'uint256' }] },
+  { name: 'maxDeposits',                 type: 'function', stateMutability: 'view',       inputs: [],                                                                outputs: [{ type: 'uint256' }] },
+  { name: 'totalDeposits',              type: 'function', stateMutability: 'view',       inputs: [],                                                                outputs: [{ type: 'uint256' }] },
+  { name: 'totalAssets',                 type: 'function', stateMutability: 'view',       inputs: [],                                                                outputs: [{ type: 'uint256' }] },
+  { name: 'totalSupply',                 type: 'function', stateMutability: 'view',       inputs: [],                                                                outputs: [{ type: 'uint256' }] },
+  { name: 'getCurrentEpoch',             type: 'function', stateMutability: 'view',       inputs: [],                                                                outputs: [{ type: 'uint256' }] },
+  { name: 'getCurrentEpochInfo',         type: 'function', stateMutability: 'view',       inputs: [],                                                                outputs: [{ type: 'tuple', components: [{ name: 'fundingStart', type: 'uint80' }, { name: 'epochStart', type: 'uint80' }, { name: 'epochEnd', type: 'uint80' }] }] },
+  { name: 'isFunding',                   type: 'function', stateMutability: 'view',       inputs: [],                                                                outputs: [{ type: 'bool' }] },
+  { name: 'isInEpoch',                   type: 'function', stateMutability: 'view',       inputs: [],                                                                outputs: [{ type: 'bool' }] },
+  { name: 'whitelistAsset',              type: 'function', stateMutability: 'view',       inputs: [],                                                                outputs: [{ type: 'address' }] },
+  { name: 'whitelistBalance',            type: 'function', stateMutability: 'view',       inputs: [],                                                                outputs: [{ type: 'uint256' }] },
+  { name: 'whitelisted',                 type: 'function', stateMutability: 'view',       inputs: [{ name: '', type: 'address' }],                                   outputs: [{ type: 'bool' }] },
+  { name: 'balanceOf',                   type: 'function', stateMutability: 'view',       inputs: [{ name: 'account', type: 'address' }],                            outputs: [{ type: 'uint256' }] },
+  { name: 'convertToAssets',             type: 'function', stateMutability: 'view',       inputs: [{ name: 'shares', type: 'uint256' }],                             outputs: [{ type: 'uint256' }] },
+  // ---- Owner ----
+  { name: 'startEpoch',                  type: 'function', stateMutability: 'nonpayable', inputs: [{ name: '_fundingStart', type: 'uint80' }, { name: '_epochStart', type: 'uint80' }, { name: '_epochEnd', type: 'uint80' }], outputs: [] },
+  { name: 'setMaxDeposits',              type: 'function', stateMutability: 'nonpayable', inputs: [{ name: '_newMax', type: 'uint256' }],                            outputs: [] },
+  { name: 'setTrader',                   type: 'function', stateMutability: 'nonpayable', inputs: [{ name: '_trader', type: 'address' }],                            outputs: [] },
+  { name: 'setWhitelistAsset',           type: 'function', stateMutability: 'nonpayable', inputs: [{ name: '_whitelistAsset', type: 'address' }],                    outputs: [] },
+  { name: 'setWhitelistBalance',         type: 'function', stateMutability: 'nonpayable', inputs: [{ name: '_whitelistBalance', type: 'uint256' }],                  outputs: [] },
+  { name: 'setWhitelistStatus',          type: 'function', stateMutability: 'nonpayable', inputs: [{ name: '_user', type: 'address' }, { name: '_status', type: 'bool' }], outputs: [] },
+  // ---- Trader ----
+  { name: 'custodyFunds',                type: 'function', stateMutability: 'nonpayable', inputs: [],                                                                outputs: [{ type: 'uint256' }] },
+  { name: 'returnFunds',                 type: 'function', stateMutability: 'nonpayable', inputs: [{ name: '_amount', type: 'uint256' }],                            outputs: [] },
+  // ---- Depositor (ERC-4626) ----
+  { name: 'deposit',                     type: 'function', stateMutability: 'nonpayable', inputs: [{ name: 'assets', type: 'uint256' }, { name: 'receiver', type: 'address' }], outputs: [{ type: 'uint256' }] },
+  { name: 'withdraw',                    type: 'function', stateMutability: 'nonpayable', inputs: [{ name: 'assets', type: 'uint256' }, { name: 'receiver', type: 'address' }, { name: 'owner', type: 'address' }], outputs: [{ type: 'uint256' }] },
+  { name: 'redeem',                      type: 'function', stateMutability: 'nonpayable', inputs: [{ name: 'shares', type: 'uint256' }, { name: 'receiver', type: 'address' }, { name: 'owner', type: 'address' }], outputs: [{ type: 'uint256' }] },
+  { name: 'approve',                     type: 'function', stateMutability: 'nonpayable', inputs: [{ name: 'spender', type: 'address' }, { name: 'amount', type: 'uint256' }], outputs: [{ type: 'bool' }] },
+] as const
