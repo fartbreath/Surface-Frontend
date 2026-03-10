@@ -2,7 +2,7 @@ import { useReadContracts } from 'wagmi'
 import { vaultAbi } from '../vaultAbi'
 import { formatUnits } from 'viem'
 
-interface Props { vaultAddress: `0x${string}` }
+interface Props { vaultAddress: `0x${string}`; vaultSymbol?: string; assetSymbol?: string }
 
 function fmt(val: bigint | undefined, dec = 18) {
   if (val === undefined) return '…'
@@ -19,7 +19,7 @@ function tsToLocal(ts: number) {
   return new Date(ts * 1000).toLocaleString()
 }
 
-export default function VaultStatus({ vaultAddress }: Props) {
+export default function VaultStatus({ vaultAddress, vaultSymbol = '…', assetSymbol = '…' }: Props) {
   const contract = { address: vaultAddress, abi: vaultAbi }
 
   const { data, isLoading } = useReadContracts({
@@ -138,11 +138,11 @@ export default function VaultStatus({ vaultAddress }: Props) {
       <div className="card">
         <h3>Balances</h3>
         <div className="status-grid">
-          <div className="stat"><label>Total Assets</label>      <span>{fmt(totalAssets as bigint)}</span></div>
-          <div className="stat"><label>Total Deposits</label>    <span>{fmt(totalDeposits as bigint)}</span></div>
-          <div className="stat"><label>Max Deposits</label>      <span>{fmt(maxDeposits as bigint)}</span></div>
-          <div className="stat"><label>Total Shares</label>      <span>{fmt(totalSupply as bigint)}</span></div>
-          <div className="stat"><label>Custodied Amount</label>  <span>{fmt(custodiedAmount as bigint)}</span></div>
+          <div className="stat"><label>Total Assets ({assetSymbol})</label>      <span>{fmt(totalAssets as bigint)}</span></div>
+          <div className="stat"><label>Total Deposits ({assetSymbol})</label>    <span>{fmt(totalDeposits as bigint)}</span></div>
+          <div className="stat"><label>Max Deposits ({assetSymbol})</label>      <span>{fmt(maxDeposits as bigint)}</span></div>
+          <div className="stat"><label>Total Shares ({vaultSymbol})</label>      <span>{fmt(totalSupply as bigint)}</span></div>
+          <div className="stat"><label>Custodied ({assetSymbol})</label>         <span>{fmt(custodiedAmount as bigint)}</span></div>
         </div>
       </div>
 

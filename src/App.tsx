@@ -6,6 +6,7 @@ import VaultStatus from './components/VaultStatus'
 import OwnerActions from './components/OwnerActions'
 import TraderActions from './components/TraderActions'
 import DepositorActions from './components/DepositorActions'
+import { useVaultTokens } from './hooks/useVaultTokens'
 
 type Tab = 'status' | 'owner' | 'trader' | 'depositor'
 
@@ -14,6 +15,8 @@ export default function App() {
   const [rawAddress, setRawAddress] = useState('0xa572882C80b276A36Ea3fDBf9Cf21aAF9F4e65CD')
   const [vaultAddress, setVaultAddress] = useState<`0x${string}`>('0xa572882C80b276A36Ea3fDBf9Cf21aAF9F4e65CD')
   const [tab, setTab] = useState<Tab>('status')
+
+  const { vaultSymbol, assetSymbol } = useVaultTokens(vaultAddress)
 
   const handleLoad = () => {
     if (isAddress(rawAddress)) setVaultAddress(rawAddress as `0x${string}`)
@@ -66,10 +69,10 @@ export default function App() {
             ))}
           </div>
 
-          {tab === 'status'    && <VaultStatus    vaultAddress={vaultAddress} />}
+          {tab === 'status'    && <VaultStatus    vaultAddress={vaultAddress} vaultSymbol={vaultSymbol} assetSymbol={assetSymbol} />}
           {tab === 'owner'     && <OwnerActions    vaultAddress={vaultAddress} />}
-          {tab === 'trader'    && <TraderActions   vaultAddress={vaultAddress} />}
-          {tab === 'depositor' && <DepositorActions vaultAddress={vaultAddress} />}
+          {tab === 'trader'    && <TraderActions   vaultAddress={vaultAddress} assetSymbol={assetSymbol} />}
+          {tab === 'depositor' && <DepositorActions vaultAddress={vaultAddress} vaultSymbol={vaultSymbol} assetSymbol={assetSymbol} />}
         </>
       )}
     </div>

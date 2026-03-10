@@ -3,7 +3,7 @@ import { useWriteContract, useWaitForTransactionReceipt, useReadContracts, useAc
 import { vaultAbi } from '../vaultAbi'
 import { parseUnits, formatUnits } from 'viem'
 
-interface Props { vaultAddress: `0x${string}` }
+interface Props { vaultAddress: `0x${string}`; vaultSymbol?: string; assetSymbol?: string }
 
 function TxBadge({ hash, error, confirming }: { hash?: `0x${string}`; error?: Error | null; confirming?: boolean }) {
   if (error) return <p className="tx-status error">{error.message.slice(0, 120)}</p>
@@ -11,7 +11,7 @@ function TxBadge({ hash, error, confirming }: { hash?: `0x${string}`; error?: Er
   return null
 }
 
-export default function DepositorActions({ vaultAddress }: Props) {
+export default function DepositorActions({ vaultAddress, vaultSymbol = '…', assetSymbol = '…' }: Props) {
   const { address: account } = useAccount()
   const contract = { address: vaultAddress, abi: vaultAbi }
   const { writeContract, data: hash, error, isPending, reset } = useWriteContract()
@@ -49,8 +49,8 @@ export default function DepositorActions({ vaultAddress }: Props) {
       {/* My position */}
       <div className="card">
         <div className="status-grid">
-          <div className="stat"><label>My Shares (sfFROG)</label>    <span>{fmt(shares)}</span></div>
-          <div className="stat"><label>Value per Share</label>        <span>{fmt(pricePerShare)} FROG</span></div>
+          <div className="stat"><label>My Shares ({vaultSymbol})</label>    <span>{fmt(shares)}</span></div>
+          <div className="stat"><label>Value per Share</label>        <span>{fmt(pricePerShare)} {assetSymbol}</span></div>
           <div className="stat"><label>Funding Window Open</label>    <span>{isFunding ? '✅ Yes' : '❌ No'}</span></div>
           <div className="stat"><label>Total Assets in Vault</label>  <span>{fmt(totalAssets)}</span></div>
         </div>

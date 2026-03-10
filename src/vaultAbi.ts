@@ -1,6 +1,8 @@
 export const vaultAbi = [
   // ---- View / State ----
   { name: 'asset',                       type: 'function', stateMutability: 'view',       inputs: [],                                                                outputs: [{ type: 'address' }] },
+  { name: 'symbol',                      type: 'function', stateMutability: 'view',       inputs: [],                                                                outputs: [{ type: 'string' }] },
+  { name: 'name',                        type: 'function', stateMutability: 'view',       inputs: [],                                                                outputs: [{ type: 'string' }] },
   { name: 'trader',                      type: 'function', stateMutability: 'view',       inputs: [],                                                                outputs: [{ type: 'address' }] },
   { name: 'owner',                       type: 'function', stateMutability: 'view',       inputs: [],                                                                outputs: [{ type: 'address' }] },
   { name: 'started',                     type: 'function', stateMutability: 'view',       inputs: [],                                                                outputs: [{ type: 'bool' }] },

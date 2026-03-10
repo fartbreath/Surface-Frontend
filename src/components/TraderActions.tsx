@@ -3,7 +3,7 @@ import { useWriteContract, useWaitForTransactionReceipt, useReadContracts } from
 import { vaultAbi } from '../vaultAbi'
 import { parseUnits, formatUnits } from 'viem'
 
-interface Props { vaultAddress: `0x${string}` }
+interface Props { vaultAddress: `0x${string}`; assetSymbol?: string }
 
 function TxBadge({ hash, error, confirming }: { hash?: `0x${string}`; error?: Error | null; confirming?: boolean }) {
   if (error) return <p className="tx-status error">{error.message.slice(0, 120)}</p>
@@ -11,7 +11,7 @@ function TxBadge({ hash, error, confirming }: { hash?: `0x${string}`; error?: Er
   return null
 }
 
-export default function TraderActions({ vaultAddress }: Props) {
+export default function TraderActions({ vaultAddress, assetSymbol = '…' }: Props) {
   const contract = { address: vaultAddress, abi: vaultAbi }
   const { writeContract, data: hash, error, isPending, reset } = useWriteContract()
   const { isLoading: confirming } = useWaitForTransactionReceipt({ hash })
@@ -45,8 +45,8 @@ export default function TraderActions({ vaultAddress }: Props) {
       {/* Status banner */}
       <div className="card">
         <div className="status-grid">
-          <div className="stat"><label>Total Assets in Vault</label><span>{totalFmt}</span></div>
-          <div className="stat"><label>Custodied Amount</label>     <span>{custodiedFmt}</span></div>
+          <div className="stat"><label>Total Assets ({assetSymbol})</label><span>{totalFmt}</span></div>
+          <div className="stat"><label>Custodied ({assetSymbol})</label>     <span>{custodiedFmt}</span></div>
           <div className="stat"><label>In Epoch</label>             <span>{isInEpoch ? '✅ Yes' : '❌ No'}</span></div>
           <div className="stat"><label>Funds Custodied</label>      <span>{custodied ? '✅ Yes' : '❌ No'}</span></div>
         </div>
